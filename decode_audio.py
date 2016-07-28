@@ -12,7 +12,7 @@ def recover_lsb_watermark(watermarked_filepath):
     watermark_bytes = 0
     for (sample,i) in zip(samples[0:32], range(0,32)):
         watermark_bytes = watermark_bytes + ( (sample & 1) * (2 ** i))
-
+        
     print("Recovering %d bytes of watermark information from %s (%d samples)" % (watermark_bytes, watermarked_filepath, len(samples)))
 
     watermark_data = []

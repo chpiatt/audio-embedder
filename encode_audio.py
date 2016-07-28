@@ -25,7 +25,6 @@ def lsb_watermark(cover_filepath, watermark_data, watermarked_output_path):
         raise OverflowError("The watermark data provided is too big to fit into the cover audio! Tried to fit %d bits into %d bits of space." % (len(watermark_bits), len(samples)))
 
     print("Watermarking %s (%d samples) with %d bits of information." % (cover_filepath, len(samples), len(watermark_bits)))
-
     encoded_samples = []
 
     watermark_position = 0
@@ -55,12 +54,18 @@ def watermark_to_bits(watermark, nbits=8):
     watermark_bits = []
     for byte in watermark:
         for i in range(0,nbits):
+            print(byte)
+            print(2 ** i)
+            print(byte & (2 ** i))
+            print(byte & (2 ** i) >> i)
             watermark_bits.append( (byte & (2 ** i)) >> i )
+    print(watermark_bits)
+    print(len(watermark_bits))
     return watermark_bits
 
 
 if __name__ == "__main__":
-    message = "hello world"
+    message = "hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world"
     cover_audio = "input/440_sine.wav"
     output = "output/secret.wav"
 
